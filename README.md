@@ -8,6 +8,6 @@
 ## 工具
 [Git](https://git-scm.com/download)
 ## 环境
-[tomcat v7.0]
-[JDK 8.0]
+[tomcat v7.0]\
+[JDK 8.0]\
 [node.js 6.11.3]
