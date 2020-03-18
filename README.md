@@ -7,6 +7,6 @@
 [elementUI](https://element.eleme.cn/#/zh-CN)
 [tomcat](http://tomcat.apache.org/)\
 [Java](https://www.oracle.com/java/)\
-[node.js 6.11.3](https://nodejs.org/en/)
+[node.js](https://nodejs.org/en/)
 ## 工具
 [Git](https://git-scm.com/download)
