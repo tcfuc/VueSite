@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ccsu.zy.dao.SiteSysUserDao">
+	<select id="querySiteSysUser" parameterType="SiteSysUser" resultType="SiteSysUser">
+		select * 
+		from site_sys_user u
+		where status = 0
+		<if test="login_code != null and login_code != '' ">
+	         AND u.login_code = #{login_code}
+	    </if>
+	    <if test="user_name != null and user_name != ''">
+	         AND u.user_name = #{user_name}
+	    </if>
+	    <if test="email != null and email != ''">
+	         AND u.email = #{email}
+	    </if>
+	    <if test="mobile != null and mobile != ''">
+	         AND u.mobile = #{mobile}
+	    </if>
+	    <if test="phone != null and phone != ''">
+	         AND u.phone = #{phone}
+	    </if>
+	    <if test="status != null and status != ''">
+	         AND u.status = #{status}
+	    </if>
+	    <if test="mgr_type != null and mgr_type != ''">
+	         AND u.mgr_type = #{mgr_type}
+	    </if>
+	</select>
+	
+	<!-- 对应的插入字段的名字 -->
+	<sql id="key">
+		<trim suffixOverrides=",">
+			<if test="user_code != null and user_code != ''">user_code,</if>
+			<if test="login_code != null and login_code != ''">login_code,</if>
+			<if test="user_name != null and user_name != ''">user_name,</if>
+			<if test="password != null and password != ''">password,</if>
+			<if test="email != null and email != ''">email,</if>
+			<if test="mobile != null and mobile != ''">mobile,</if>
+			<if test="phone != null and phone != ''">phone,</if>
+			<if test="mgr_type != null and mgr_type != ''">mgr_type,</if>
+
+			<if test="last_login_date != null and last_login_date != ''">last_login_date,</if>
+
+			<if test="status != null and status != ''">status,</if>
+			<if test="create_by != null and create_by != ''">create_by,</if>
+			<if test="create_date != null and create_date != ''">create_date,</if>
+			<if test="update_by != null and update_by != ''">update_by,</if>
+			<if test="update_date != null and update_date != ''">update_date,</if>
+			<if test="remarks != null and remarks != ''">remarks</if>
+
+		</trim>
+	</sql>
+	
+	<!-- 对应的插入字段的值 -->
+	<sql id="values">
+		<trim suffixOverrides=",">	
+			<if test="user_code != null and user_code != ''">#{user_code},</if>
+			<if test="login_code != null and login_code != ''">#{login_code},</if>
+			<if test="user_name != null and user_name != ''">#{user_name},</if>
+			<if test="password != null and password != ''">#{password},</if>
+			<if test="email != null and email != ''">#{email},</if>
+			<if test="mobile != null and mobile != ''">#{mobile},</if>
+			<if test="phone != null and phone != ''">#{phone},</if>
+			<if test="mgr_type != null and mgr_type != ''">#{mgr_type},</if>	
+
+			<if test="last_login_date != null and last_login_date != ''">#{last_login_date},</if>
+			
+			<if test="status != null and status != ''">#{status},</if>
+			<if test="create_by != null and create_by != ''">#{create_by},</if>
+			<if test="create_date != null and create_date != ''">#{create_date},</if>
+			<if test="update_by != null and update_by != ''">#{update_by},</if>
+			<if test="update_date != null and update_date != ''">#{update_date},</if>
+			<if test="remarks != null and remarks != ''">#{remarks},</if>
+		</trim>
+	</sql>
+
+	<insert id="insertSiteSysUser" parameterType="SiteSysUser">
+		insert into 
+		site_sys_user(<include refid="key"/>) 
+		values(<include refid="values"/>)
+	</insert>
+	
+	<update id="deleteSiteSysUser" parameterType="SiteSysUser">
+		update site_sys_user 
+		set status = '1'
+		where login_code = #{login_code}
+	</update>
+	
+	<update id="updateSiteSysUser" parameterType="SiteSysUser">
+		update site_sys_user u
+		<trim prefix="set" suffixOverrides=",">
+	      <if test="login_code != null and login_code != ''">u.login_code=#{login_code},</if>
+	      <if test="user_name != null and user_name != ''">u.user_name=#{user_name},</if>
+	      <if test="email != null and email != ''">u.email=#{email},</if>
+	      <if test="mobile != null and mobile != ''">u.mobile=#{mobile},</if>
+	      <if test="phone != null and phone != ''">u.phone=#{phone},</if>
+	      <if test="status != null and status != ''">u.status=#{status},</if>
+	      <if test="mgr_type != null and mgr_type != ''">u.mgr_type=#{mgr_type},</if>
+	    </trim>
+		where 
+		<trim suffixOverrides="AND">
+	      <if test="login_code != null and login_code != ''">u.login_code=#{login_code} AND</if>
+	      <if test="user_code != null and user_code != ''">u.user_code=#{user_code} AND</if>
+	    </trim>
+	</update>
+	
+	
+</mapper>

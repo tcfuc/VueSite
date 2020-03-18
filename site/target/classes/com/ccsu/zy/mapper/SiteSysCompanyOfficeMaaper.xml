@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-/mybatis.org//DTD Mapper 3.0/EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ccsu.zy.dao.SiteSysCompanyOfficeDao">
+	<select id="querySiteSysCompanyOffice" parameterType="SiteSysCompanyOffice" resultType="SiteSysCompanyOffice">
+		select * 
+		from site_sys_company_office
+	</select>
+	
+	<insert id="insertSiteSysCompanyOffice" parameterType="SiteSysCompanyOffice">
+		insert into
+	    site_sys_company_office(company_code, office_code)
+	    values(#{company_code},#{office_code})
+	</insert>
+	
+	<delete id="deleteSiteSysCompanyOffice" parameterType="SiteSysCompanyOffice">
+		delete 
+		from site_sys_company_office 
+		where company_code = #{company_code} or office_code = #{office_code}
+	</delete>
+	
+	<update id="updateSiteSysCompanyOffice" parameterType="SiteSysCompanyOffice">
+		update site_sys_post 
+		set office_code=#{office_code} 
+		where company_code =#{company_code}
+	</update>
+</mapper>

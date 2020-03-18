@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ccsu.zy.dao.SiteSysPostDao">
+	<select id="querySiteSysPost" parameterType="SiteSysPost" resultType="SiteSysPost">
+		select * 
+		from site_sys_post p
+		where status = 0
+        <if test="post_code != null and post_code != '' ">
+            AND p.post_code = #{post_code}
+        </if>
+        <if test="post_name != null and post_name != '' ">
+            AND p.post_name = #{post_name}
+        </if>
+        <if test="post_type != null and post_type != '' ">
+            AND p.post_type = #{post_type}
+        </if>
+	</select>
+	
+	<insert id="insertSiteSysPost" parameterType="SiteSysPost">
+		insert into site_sys_post
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="post_code != null and post_code != '' ">
+                post_code,
+            </if>
+            <if test="post_name != null and post_name != '' ">
+                post_name,
+            </if>
+            <if test="post_type != null and post_type != '' ">
+                post_type,
+            </if>
+            <if test="post_sort != null and post_sort != '' ">
+                post_sort,
+            </if>
+            
+            <if test="status != null and status != '' ">
+                status,
+            </if>
+            <if test="create_by != null and create_by != '' ">
+                create_by,
+            </if>
+            <if test="create_date != null and create_date != '' ">
+                create_date,
+            </if> 
+            <if test="update_by != null and update_by != '' ">
+                update_by,
+            </if> 
+            <if test="update_date != null and update_date != '' ">
+                update_date,
+            </if> 
+            <if test="remarks != null and remarks != '' ">
+                remarks,
+            </if>             
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="post_code != null and post_code != '' ">
+                #{post_code},
+            </if>
+            <if test="post_name != null and post_name != '' ">
+                #{post_name},
+            </if>
+            <if test="post_type != null and post_type != '' ">
+                #{post_type},
+            </if>
+            <if test="post_sort != null and post_sort != '' ">
+                #{post_sort},
+            </if>
+            
+            <if test="status != null and status != '' ">
+                #{status},
+            </if>
+            <if test="create_by != null and create_by != '' ">
+                #{create_by},
+            </if>      
+            <if test="create_date != null and create_date != '' ">
+                #{create_date},
+            </if>   
+            <if test="update_by != null and update_by != '' ">
+                #{update_by},
+            </if>   
+            <if test="update_date != null and update_date != '' ">
+                #{update_date},
+            </if>   
+            <if test="remarks != null and remarks != '' ">
+                #{remarks},
+            </if>                   
+        </trim>
+	</insert>
+	
+	<update id="deleteSiteSysPost" parameterType="SiteSysPost">
+		update site_sys_post 
+		set status = 1
+		where post_code = #{post_code}
+	</update>
+	
+	<update id="updateSiteSysPost" parameterType="SiteSysPost">
+		update site_sys_post
+		<trim prefix="set" suffixOverrides=",">
+	      <if test="post_name != null and post_name != '' ">post_name = #{post_name},</if>
+	      <if test="post_type != null and post_type != '' ">post_type = #{post_type},</if>
+	      <if test="post_sort != null and post_sort != '' ">post_sort = #{post_sort},</if>
+	      <if test="remarks != null and remarks != '' ">remarks = #{remarks},</if>
+	    </trim>
+		where post_code = #{post_code}
+	</update>
+	
+	
+</mapper>

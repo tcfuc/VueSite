@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ccsu.zy.dao.SiteSysCompanyDao">
+	<select id="querySiteSysCompany" parameterType="SiteSysCompany" resultType="SiteSysCompany">
+		select * 
+		from site_sys_company
+		where status = 0
+		<if test="company_name != null and company_name != '' ">
+	         AND company_name LIKE "%${company_name}%"
+	    </if>
+	    <if test="company_code != null and company_code != '' ">
+	         AND company_code = #{company_code}
+	    </if>
+	    <if test="full_name != null and full_name != '' ">
+	         AND full_name LIKE "%${full_name}%"
+	    </if>
+	</select>
+	
+	<!-- 对应的插入字段的名字 -->
+	<sql id="key">
+		<trim suffixOverrides=",">
+			<if test="company_code != null and company_code != ''">company_code,</if>
+			<if test="parent_code != null and parent_code != ''">parent_code,</if>
+			<if test="tree_leaf != null and tree_leaf != ''">tree_leaf,</if>
+			
+			<if test="company_name != null and company_name != ''">company_name,</if>
+			<if test="full_name != null and full_name != ''">full_name,</if>
+			
+			<if test="status != null and status != ''">status,</if>
+			<if test="create_by != null and create_by != ''">create_by,</if>
+			<if test="create_date != null and create_date != ''">create_date,</if>
+			<if test="update_by != null and update_by != ''">update_by,</if>
+			<if test="update_date != null and update_date != ''">update_date,</if>
+			<if test="remarks != null and remarks != ''">remarks,</if>
+		</trim>
+	</sql>
+	
+	<!-- 对应的插入字段的值 -->
+	<sql id="values">
+		<trim suffixOverrides=",">	
+			<if test="company_code != null and company_code != ''">#{company_code},</if>
+			<if test="parent_code != null and parent_code != ''">#{parent_code},</if>
+			<if test="tree_leaf != null and tree_leaf != ''">#{tree_leaf},</if>
+			
+			<if test="company_name != null and company_name != ''">#{company_name},</if>
+			<if test="full_name != null and full_name != ''">#{full_name},</if>
+			
+			<if test="status != null and status != ''">#{status},</if>
+			<if test="create_by != null and create_by != ''">#{create_by},</if>
+			<if test="create_date != null and create_date != ''">#{create_date},</if>
+			<if test="update_by != null and update_by != ''">#{update_by},</if>
+			<if test="update_date != null and update_date != ''">#{update_date},</if>
+			<if test="remarks != null and remarks != ''">#{remarks},</if>
+		</trim>
+	</sql>
+	
+	<insert id="insertSiteSysCompany" parameterType="SiteSysCompany">
+		insert into 
+		site_sys_company(<include refid="key"/>) 
+		values(<include refid="values"/>)
+	</insert>
+	
+	<update id="deleteSiteSysCompany" parameterType="SiteSysCompany">
+		update site_sys_company 
+		set status = '1'
+		where company_code = #{company_code}
+	</update>
+	
+	<update id="updateSiteSysCompany" parameterType="SiteSysCompany">
+		update site_sys_company 
+		<trim prefix="set" suffixOverrides=",">
+	      <if test="parent_code != null and parent_code != ''">parent_code = #{parent_code},</if>
+	      <if test="company_name != null and company_name != ''">company_name = #{company_name},</if>
+	      <if test="full_name != null and full_name != ''">full_name = #{full_name},</if>
+	      <if test="tree_sort != null and tree_sort != ''">tree_sort = #{tree_sort},</if>
+	      <if test="tree_leaf != null and tree_leaf != ''">tree_leaf = #{tree_leaf},</if>
+	      <if test="remarks != null and remarks != ''">remarks = #{remarks},</if>
+	    </trim>
+		where company_code = #{company_code}
+	</update>
+
+</mapper>

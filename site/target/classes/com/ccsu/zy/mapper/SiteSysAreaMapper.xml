@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ccsu.zy.dao.SiteSysAreaDao">
+	<select id="querySiteSysArea" parameterType="SiteSysArea" resultType="SiteSysArea">
+		select * 
+		from site_sys_area
+		where status = 0
+		<if test="area_name != null and area_name != '' ">
+	         AND area_name LIKE "%${area_name}%"
+	    </if>
+	    <if test="area_code != null and area_code != '' ">
+	         AND area_code = #{area_code}
+	    </if>
+	</select>
+	
+	<!-- 对应的插入字段的名字 -->
+	<sql id="key">
+		<trim suffixOverrides=",">
+			<if test="area_code != null and area_code != ''">area_code,</if>
+			<if test="parent_code != null and parent_code != ''">parent_code,</if>
+			<if test="tree_leaf != null and tree_leaf != ''">tree_leaf,</if>
+
+			<if test="area_name != null and area_name != ''">area_name,</if>
+			<if test="area_type != null and area_type != ''">area_type,</if>
+			
+			<if test="status != null and status != ''">status,</if>
+			<if test="create_by != null and create_by != ''">create_by,</if>
+			<if test="create_date != null and create_date != ''">create_date,</if>
+			<if test="update_by != null and update_by != ''">update_by,</if>
+			<if test="update_date != null and update_date != ''">update_date,</if>
+			<if test="remarks != null and remarks != ''">remarks,</if>
+		</trim>
+	</sql>
+	
+	<!-- 对应的插入字段的值 -->
+	<sql id="values">
+		<trim suffixOverrides=",">	
+			<if test="area_code != null and area_code != ''">#{area_code},</if>
+			<if test="parent_code != null and parent_code != ''">#{parent_code},</if>
+			<if test="tree_leaf != null and tree_leaf != ''">#{tree_leaf},</if>
+			
+			<if test="area_name != null and area_name != ''">#{area_name},</if>
+			<if test="area_type != null and area_type != ''">#{area_type},</if>
+			
+			<if test="status != null and status != ''">#{status},</if>
+			<if test="create_by != null and create_by != ''">#{create_by},</if>
+			<if test="create_date != null and create_date != ''">#{create_date},</if>
+			<if test="update_by != null and update_by != ''">#{update_by},</if>
+			<if test="update_date != null and update_date != ''">#{update_date},</if>
+			<if test="remarks != null and remarks != ''">#{remarks},</if>
+		</trim>
+	</sql>
+	
+	<insert id="insertSiteSysArea" parameterType="SiteSysArea">
+		insert into 
+		site_sys_area(<include refid="key"/>) 
+		values(<include refid="values"/>)
+	</insert>
+	
+	<update id="deleteSiteSysArea" parameterType="SiteSysArea">
+		update site_sys_area 
+		set status = '1'
+		where area_code = #{area_code}
+	</update>
+	
+	<update id="updateSiteSysArea" parameterType="SiteSysArea">
+		update site_sys_area 
+		<trim prefix="set" suffixOverrides=",">
+	      <if test="parent_code != null and parent_code != ''">parent_code = #{parent_code},</if>
+	      <if test="area_code != null and area_code != ''">area_code = #{area_code},</if>
+	      <if test="area_name != null and area_name != ''">area_name = #{area_name},</if>
+	      <if test="area_type != null and area_type != ''">area_type = #{area_type},</if>
+	      <if test="tree_leaf != null and tree_leaf != ''">tree_leaf = #{tree_leaf},</if>
+	      <if test="remarks != null and remarks != ''">remarks = #{remarks},</if>
+	    </trim>
+		where area_code = #{area_code}
+	</update>
+
+</mapper>

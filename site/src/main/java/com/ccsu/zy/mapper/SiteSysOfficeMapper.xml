@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-/mybatis.org/DTD Mapper 3.0/EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ccsu.zy.dao.SiteSysOfficeDao">
+	<select id="querySiteSysOffice" parameterType="SiteSysOffice" resultType="SiteSysOffice">
+		select * 
+		from site_sys_office
+		where status = 0
+		<if test="office_code != null and office_code != '' ">
+	         AND office_code = #{office_code}
+	    </if>
+		<if test="office_name != null and office_name != '' ">
+	         AND office_name LIKE "%${office_name}%"
+	    </if>
+		<if test="full_name != null and full_name != '' ">
+	         AND full_name LIKE "%${full_name}%"
+	    </if>
+		<if test="office_type != null and office_type != '' ">
+	         AND office_type = #{office_type}
+	    </if>
+	</select>
+	
+	<!-- 对应的插入字段的名字 -->
+	<sql id="key">
+		<trim suffixOverrides=",">
+			<if test="office_code != null and office_code != ''">office_code,</if>
+			<if test="parent_code != null and parent_code != ''">parent_code,</if>
+			<if test="tree_leaf != null and tree_leaf != ''">tree_leaf,</if>
+
+			<if test="office_name != null and office_name != ''">office_name,</if>
+			<if test="full_name != null and full_name != ''">full_name,</if>
+			<if test="office_type != null and office_type != ''">office_type,</if>
+			<if test="leader != null and leader != ''">leader,</if>
+			<if test="phone != null and phone != ''">phone,</if>
+			<if test="address != null and address != ''">address,</if>
+			<if test="zip_code != null and zip_code != ''">zip_code,</if>
+			<if test="email != null and email != ''">email,</if>
+			
+			<if test="status != null and status != ''">status,</if>
+			<if test="create_by != null and create_by != ''">create_by,</if>
+			<if test="create_date != null and create_date != ''">create_date,</if>
+			<if test="update_by != null and update_by != ''">update_by,</if>
+			<if test="update_date != null and update_date != ''">update_date,</if>
+			<if test="remarks != null and remarks != ''">remarks,</if>
+			
+		</trim>
+	</sql>
+	
+	<!-- 对应的插入字段的值 -->
+	<sql id="values">
+		<trim suffixOverrides=",">	
+			<if test="office_code != null and office_code != ''">#{office_code},</if>
+			<if test="parent_code != null and parent_code != ''">#{parent_code},</if>
+			<if test="tree_leaf != null and tree_leaf != ''">#{tree_leaf},</if>
+			
+			<if test="office_name != null and office_name != ''">#{office_name},</if>
+			<if test="full_name != null and full_name != ''">#{full_name},</if>
+			<if test="office_type != null and office_type != ''">#{office_type},</if>
+			<if test="leader != null and leader != ''">#{leader},</if>
+			<if test="phone != null and phone != ''">#{phone},</if>
+			<if test="address != null and address != ''">#{address},</if>
+			<if test="zip_code != null and zip_code != ''">#{zip_code},</if>
+			<if test="email != null and email != ''">#{email},</if>
+			
+			<if test="status != null and status != ''">#{status},</if>
+			<if test="create_by != null and create_by != ''">#{create_by},</if>
+			<if test="create_date != null and create_date != ''">#{create_date},</if>
+			<if test="update_by != null and update_by != ''">#{update_by},</if>
+			<if test="update_date != null and update_date != ''">#{update_date},</if>
+			<if test="remarks != null and remarks != ''">#{remarks},</if>
+		</trim>
+	</sql>
+		
+	<insert id="insertSiteSysOffice" parameterType="SiteSysOffice">
+		insert into 
+		site_sys_office(<include refid="key"/>) 
+		values(<include refid="values"/>)
+	</insert>
+	
+	<update id="deleteSiteSysOffice" parameterType="SiteSysOffice">
+		update site_sys_office 
+		set status = '1'
+		where office_code =#{office_code}
+	</update>
+	
+	<update id="updateSiteSysOffice" parameterType="SiteSysOffice">
+		update site_sys_office 
+		<trim prefix="set" suffixOverrides=",">
+	      <if test="parent_code != null and parent_code != ''">parent_code = #{parent_code},</if>
+	      <if test="office_name != null and office_name != ''">office_name = #{office_name},</if>
+	      <if test="full_name != null and full_name != ''">full_name = #{full_name},</if>
+	      <if test="tree_leaf != null and tree_leaf != ''">tree_leaf = #{tree_leaf},</if>
+	      <if test="office_type != null and office_type != ''">office_type = #{office_type},</if>
+	      <if test="remarks != null and remarks != ''">remarks = #{remarks},</if>
+	    </trim>
+		where office_code =#{office_code}
+	</update>
+	
+</mapper>

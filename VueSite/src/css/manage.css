@@ -1,0 +1,58 @@
+.manage-left{
+  float: left;
+}
+.manage-right{
+  float: right;
+}
+.borderTop{
+  border-bottom: 1px solid rgb(0, 0, 0);
+}
+.borderBottom{
+  border-bottom: 1px solid rgb(0, 0, 0);
+}
+.borderLeft{
+  border-left: 1px solid rgb(0, 0, 0);
+}
+.borderRight{
+  border-right: 1px solid rgb(0, 0, 0);
+}
+.no-padding-margin{
+  padding: 0;
+  margin: 0;
+}
+.manage-title{
+  font-size: 21px;
+  height: 50px;
+  line-height: 50px;
+}
+.main{
+  margin-left: 10px;
+  margin-right: 5px;
+}
+.main-form{
+  width: 100%;
+  margin-top: 20px;
+}
+.main-form-row{
+  margin-bottom: 15px
+}
+.main-form-input{
+  width: 130px;
+}
+.main-form-select{
+  width: 130px;
+}
+.main-table{
+  padding-top: 20px;
+}
+.pagination{
+  margin-top: 20px;
+}
+
+.pc-form{
+  width: 100%;
+  margin-top: 70px;
+}
+.pc-form-input{
+  width: 300px;
+}
