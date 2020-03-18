@@ -4,6 +4,6 @@
 [Struts2](https://struts.apache.org/)\
 [MyBatis](https://mybatis.org/mybatis-3/zh/index.html)\
 [Vue](https://cn.vuejs.org/)\
-[elementUI](https://element.eleme.cn/#/zh-CN)\
+[elementUI](https://element.eleme.cn/#/zh-CN)
 ## 工具
-[Git](https://git-scm.com/download)\
+[Git](https://git-scm.com/download)
